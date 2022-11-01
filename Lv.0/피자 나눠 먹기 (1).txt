@@ -1,0 +1,20 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int n) {
+    int answer = 0;
+    
+    for(int i=1; i<=100; i++)
+    {
+        if(7*i >= n) 
+        {
+            answer = i;
+            break;
+        }
+    }
+    // 나누기 7해서 몫이 0이 아니면 1 더하는 식으로 해도 되는데 어떻게 해도 코드가 이쁘지가 않은 듯...
+            
+    return answer;
+}
