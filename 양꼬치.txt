@@ -1,0 +1,15 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int n, int k) {
+    int answer = 0;
+    
+    // 양꼬치값 12000 * 갯수
+    // 음료수값 2000 * 갯수
+    // 서비스로 줄 음료수 갯수만큼 차감
+    answer = 12000*n + 2000*k - 2000*(n/10);
+    
+    return answer;
+}
