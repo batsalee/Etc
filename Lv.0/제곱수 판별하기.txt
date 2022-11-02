@@ -1,0 +1,16 @@
+#include <string>
+#include <vector>
+#include <cmath>
+
+using namespace std;
+
+int solution(int n) {
+    int answer = 0;
+    
+    if(sqrt(n) == (int)sqrt(n)) // 루트가 가능하면 1
+        answer = 1;
+    else // 루트가 불가능하면 2
+        answer = 2;
+    
+    return answer;
+}
