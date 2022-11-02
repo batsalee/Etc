@@ -1,0 +1,28 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(vector<int> array) {
+    int answer = 0;
+   
+    // 숫자 크기순으로 정렬
+    // 버블정렬로 제일 큰숫자가 제일 뒤로가게 반복
+    for(int j=0; j<array.size()-1; j++)
+    {
+        for(int i = 1; i < array.size()-j; i++)
+        {
+            if(array[i-1] > array[i])
+            {            
+                int temp = array[i-1];
+                array[i-1] = array[i];
+                array[i] = temp;                
+            }
+        }
+    }
+        
+    // 인덱스의 중간값에 있는 값을 answer로 대입
+    answer = array[array.size()/2];
+    
+    return answer;
+}
