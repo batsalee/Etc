@@ -1,0 +1,17 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+string solution(string my_string) {
+    string answer = "";
+
+    // 문자 하나 꺼내와서 이미 answer에 있으면 안넣고 없으면 넣고
+    for(int i=0; i<my_string.length(); i++)
+    {
+        if(answer.find(my_string[i]) == string::npos )
+            answer += my_string[i];
+    }
+
+    return answer;
+}

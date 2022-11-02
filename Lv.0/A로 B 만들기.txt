@@ -1,0 +1,24 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int solution(string before, string after) {
+    int answer = 0;
+    
+    int i;
+    for(i=0; i<before.length(); i++)
+    {
+        if( count(before.begin(), before.end(), before[i])
+        == count(after.begin(), after.end(), before[i]) )
+            continue;
+        else 
+            break;
+        
+    }
+    if(i==before.length()) 
+        answer = 1;
+    
+    return answer;
+}
