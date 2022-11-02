@@ -1,0 +1,29 @@
+#include <string>
+#include <vector>
+#include <numeric>
+
+using namespace std;
+
+int solution(int n) {
+    int answer = 0;
+    
+    // n과 6의 최소 공배수를 구한 후 6으로 나눈다
+
+/*  함수 사용법  
+    answer = lcm(n, 6) / 6;    
+*/
+    
+    // 직접 구현해보기
+    // 최소공배수는 두 수의 곱을 최대공약수로 나눈 것
+    // 즉 최대공약수를 구하는게 더 쉽다
+    int smaller = n <= 6 ? n : 6;
+    int gcd = 1;
+    for(int i=2; i<=smaller; i++)
+    {
+        if(n%i == 0 && 6%i ==0)
+            gcd = i;
+    }
+    answer = (n * 6 / gcd) / 6;
+    
+    return answer;
+}

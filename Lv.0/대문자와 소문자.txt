@@ -1,0 +1,16 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+string solution(string my_string) {
+    string answer = "";
+    
+    // 처음부터 하나씩 아스키코드 32씩 토글하면 됨
+    for(char c : my_string)
+    {
+        answer += c ^ 32;
+    }
+    
+    return answer;
+}

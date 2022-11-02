@@ -1,0 +1,22 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+string solution(string my_string) {
+    string answer = "";
+    
+    // 소문자로 전환
+    for(char c : my_string)
+    {
+        if(isupper(c))
+            answer += tolower(c);
+        else
+            answer += c;
+    }    
+    
+    sort(answer.begin(), answer.end());
+    
+    return answer;
+}
