@@ -1,0 +1,17 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int order) {
+    int answer = 0;
+    
+    // 각 자릿수를 하나씩 확인해서 3의 배수면 answer ++
+    for(int i=1000000; i>=1; i/=10)
+    {
+        if( (order/i%10)==3 || (order/i%10)==6 || (order/i%10)==9 )
+            answer++;
+    }
+    
+    return answer;
+}
