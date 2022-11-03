@@ -1,0 +1,46 @@
+#include <string>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+int solution(string s) {
+    int answer = 0;
+    
+    vector<int> numList; // 숫자만 push 해주다가 z나오면 pop 해줄 배열
+    string buffer = "";
+    int i;
+    for(i=0; i<s.length(); i++)
+    {
+        if(s[i] == 'Z')
+        {
+            if( !numList.empty() )
+            {
+                numList.pop_back();
+            }
+            buffer = "";
+        }
+        else if(s[i] == ' ')
+        {
+            if(buffer != "")
+            {               
+                numList.push_back(stoi(buffer));
+            }
+            buffer = "";
+        }
+        else
+        {
+            buffer += s[i];
+        }        
+    }
+    if(i==s.length() && buffer != "")
+        numList.push_back(stoi(buffer)); // 버퍼에 남은거 넣어주기
+    
+    // 다 더하기
+    for(int forSum : numList)
+    {
+        answer += forSum;
+    }
+    
+    return answer;
+}
