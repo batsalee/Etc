@@ -1,0 +1,30 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(vector<int> sides) {
+    int answer = 0;
+    
+    int bigger = sides[0] > sides[1] ? sides[0] : sides[1];
+    int smaller = sides[0] < sides[1] ? sides[0] : sides[1];
+    
+    // 둘이 짧은 두개일 케이스
+    // sides[0] + sides[1] > 긴변
+    // 긴 변은 1~둘의 합 -1에 해당하는 모든 자연수
+    for(int i=1; i<sides[0]+sides[1]; i++)
+    {
+        if(i < sides[0]+sides[1] && i >= bigger)
+            answer++;
+    }
+    
+    // 둘 중 하나가 가장 긴 케이스
+    // bigger < smaller + 짧은 숫자하나
+    for(int i=1; i<bigger; i++)
+    {
+        if(bigger < smaller + i)
+            answer++;
+    }
+    
+    return answer;
+}

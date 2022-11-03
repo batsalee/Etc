@@ -1,0 +1,33 @@
+#include <string>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+vector<int> solution(int num, int total) {
+    vector<int> answer;
+    
+    int standard = 10;
+    int tempSum = -1;
+    
+    
+    // while문으로 숫자 여러번 반복
+    while( total != tempSum ) 
+    {
+        // 더해보고 숫자가 크면 마이너스, 작으면 플러스
+        standard = tempSum > total ? standard-1 : standard+1; 
+        tempSum = 0;        
+        for(int i=0; i<num; i++)
+        {
+            tempSum += (standard+i);
+        } 
+    } 
+    
+    // 맞춰졋으면
+    for(int i=0; i<num; i++)
+    {
+        answer.push_back(standard+i);
+    }
+    
+    return answer;
+}

@@ -1,0 +1,55 @@
+#include <string>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+int solution(vector<vector<int>> board) {
+    int answer = 0;
+    
+    // 2차원 배열에서 지뢰가 있는곳은 1
+    // 지뢰 근처는 -1로 만들어버리기
+    // 그 다음 0만 세면 끝
+    // if y축이 0이면 윗쪽은 안하고 y축이 board.size()가 5일때 지뢰가 5면 오른쪽 안함
+    // if x축이 0이면 왼쪽은 안하고
+   
+    int lastIndex = board.size() - 1;
+    for(int x=0; x<board.size(); x++)
+    {
+        for(int y=0; y<board.size(); y++)
+        {
+            if(board[x][y] == 1)
+            {
+                if(x > 0 && y > 0 && board[x-1][y-1] != 1)
+                    board[x-1][y-1] = -1; // 왼위
+                if(y > 0 && board[x][y-1] != 1)
+                    board[x][y-1] = -1; // 위
+                if(x < lastIndex && y > 0 && board[x+1][y-1] != 1)
+                    board[x+1][y-1] = -1; // 오위
+                if(x > 0 && board[x-1][y] != 1)
+                    board[x-1][y] = -1; // 왼
+                if(x < lastIndex && board[x+1][y] != 1)
+                    board[x+1][y] = -1; // 오
+                if(x > 0 && y < lastIndex && board[x-1][y+1] != 1)
+                    board[x-1][y+1] = -1; // 왼아래
+                if(y < lastIndex && board[x][y+1] != 1)
+                    board[x][y+1] = -1; // 아래
+                if(x < lastIndex && y < lastIndex && board[x+1][y+1] != 1)
+                    board[x+1][y+1] = -1; // 오아래
+            }
+        }
+    }
+    
+    for(int x=0; x<board.size(); x++)
+    {
+        for(int y=0; y<board.size(); y++)
+        {
+            if(board[x][y] == 0)
+            {
+                answer++;
+            }
+        }
+    }
+    
+    return answer;
+}
