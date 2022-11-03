@@ -1,0 +1,30 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(string my_string) {
+    int answer = 0;
+    
+    // 자연수들만 골라내서 합을 하라    
+    // 처음부터 한개의 char씩 추출
+    string s = "0";
+    int i;
+    for(i=0; i<my_string.length(); i++)
+    {
+        if( isdigit(my_string[i]) )
+        {
+            s += my_string[i];            
+        }
+        // 다음 추출한 char가 문자일 경우 기존에 추출한 숫자들 더해주기
+        else
+        {
+            answer += stoi(s);
+            s = "0";
+        }
+    }      
+    if(i==my_string.length()) // 마지막 자리가 숫자일경우 버퍼에 남은 친구들 더해줘야함
+        answer += stoi(s);
+    
+    return answer;
+}

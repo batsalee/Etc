@@ -1,0 +1,16 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int M, int N) {
+    int answer = 0;
+ 
+        // 가로는 (m-1)번 잘라야함
+        // 세로는 m*(n-1) 자르고
+        // 둘을 더하면
+        // 1 2
+    answer = (M-1) + (M*(N-1));
+    
+    return answer;
+}

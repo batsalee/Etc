@@ -1,0 +1,24 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int i, int j, int k) {
+    int answer = 0;
+    
+    for(int n = i; n<=j; n++)
+    {
+        // k가 있는지 확인 있으면 answer++;
+        // 1의 자리부터 100000 자리까지 1의자리, 10의자리, ... 순으로 나눈 후 나머지 확인
+        // 이 방법으로 1의 자리부터 숫자 한개씩 비교 가능
+        // 단 주의할점은 999라는 숫자가 있는데 100000만까지 나누면 
+        // k=0이면 앞의 3자리에 0이 3번 들어가게 되서 answer+3이 되어버림. 
+        // 주의해야 할 테스트케이스
+        for(int m = 1; m<=100000; m*=10)
+        {
+            if( (n/m) != 0 && (n/m%10) == k ) answer++;
+        }
+    }
+    
+    return answer;
+}

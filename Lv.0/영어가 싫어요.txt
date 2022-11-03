@@ -1,0 +1,29 @@
+#include <string>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+long long solution(string numbers) {
+    long long answer = 0;
+    vector<string> alphaNum 
+        = {"zero", "one", "two", "three", "four", 
+           "five", "six", "seven", "eight", "nine"};
+    
+    int index;
+    for(int i=0; i<10; i++)
+    {
+        do
+        {      
+            index = numbers.find(alphaNum[i]); // 다음 zero를 find
+            if(index == string::npos) break; // 없으면 one으로 넘어감
+            
+            numbers.replace(index, alphaNum[i].length(), to_string(i)); // 숫자로 대체
+        }while(index != string::npos);
+    }
+    
+    answer = stoll(numbers);
+    // 여기서 stoll을 해야하는데 stoi를 써서 시간낭비 엄청 함...
+    
+    return answer;
+}  

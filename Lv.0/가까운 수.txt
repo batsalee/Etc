@@ -1,0 +1,23 @@
+#include <string>
+#include <vector>
+#include <cmath>
+
+using namespace std;
+
+int solution(vector<int> array, int n) {
+    int answer = 0;
+    int miniIndex = 0;
+    
+    for(int i=0; i<array.size(); i++)
+    {        
+        // 가장 가까운 수가 여러개면 작은수를
+        if(abs(array[i]-n) == abs(array[miniIndex]-n))
+            miniIndex = array[i]>array[miniIndex] ? miniIndex : i;
+        // 가장 가까운 수가 한개일 경우
+        else if(abs(array[i]-n) < abs(array[miniIndex]-n))
+            miniIndex = i;
+    }
+    answer = array[miniIndex];
+    
+    return answer;
+}
