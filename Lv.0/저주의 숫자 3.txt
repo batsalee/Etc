@@ -1,0 +1,19 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int n) {
+    int answer = 0;
+    
+    // for문으로 그냥 n번째 값을 구하면 됨
+    for(int i=0; i<n; i++)
+    {
+        do
+        {
+            answer++;
+        }while(answer%3==0 || answer/10%10==3 || answer/10==3 || answer%10==3);
+    }
+    
+    return answer;
+}

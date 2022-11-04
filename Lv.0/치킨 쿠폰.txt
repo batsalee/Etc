@@ -1,0 +1,19 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int chicken) {
+    int answer = 0;
+    int coupon = chicken; // 치킨 마릿수만큼 쿠폰이 있음
+    int service = 0;
+    
+    while(coupon >= 10) // 쿠폰이 10장 이상 있으면 서비스 가능
+    {   
+        service = coupon / 10;
+        answer += service;
+        coupon = (coupon % 10) + service;    
+    }
+        
+    return answer;
+}

@@ -1,0 +1,84 @@
+#include <string>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int solution(vector<vector<int>> dots) {
+    int answer = 0;
+    
+    // 가장 큰 x에서 가장 작은 x 를 뺀것 * 가장 큰 y에서 가장 작은 y 를 뺀것
+    int minX, maxX;
+    int minY, maxY;
+    
+    maxX = max( max(dots[0][0], dots[1][0]), max(dots[2][0], dots[3][0]) );
+    minX = min( min(dots[0][0], dots[1][0]), min(dots[2][0], dots[3][0]) );
+    maxY = max( max(dots[0][1], dots[1][1]), max(dots[2][1], dots[3][1]) );
+    minY = min( min(dots[0][1], dots[1][1]), min(dots[2][1], dots[3][1]) );
+    
+    answer = (maxX - minX) * (maxY - minY);
+    return answer;
+}
+
+
+/*   
+#include <string>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int solution(vector<vector<int>> dots) {
+    int answer = 0;
+    
+    // 가장 큰 x에서 가장 작은 x 를 뺀것 * 가장 큰 y에서 가장 작은 y 를 뺀것
+    int minX, maxX;
+    int minY, maxY;
+    // minX, maxX 찾기
+    for(int i=1; i<dots.size(); i++)
+    {
+        if(dots[0][0] == dots[i][0])
+            continue;
+        
+        else if(dots[0][0] > dots[i][0])
+        {
+            maxX = dots[0][0];
+            minX = dots[i][0];
+            break;
+        }
+        
+        else if(dots[0][0] < dots[i][0])
+        {
+            minX = dots[0][0];
+            maxX = dots[i][0];
+            break;
+        }
+    }
+    
+    // minY, maxY 찾기
+    for(int i=1; i<dots.size(); i++)
+    {
+        if(dots[0][1] == dots[i][1])
+            continue;
+        
+        else if(dots[0][1] > dots[i][1])
+        {
+            maxY = dots[0][1];
+            minY = dots[i][1];
+            break;
+        }
+        
+        else if(dots[0][1] < dots[i][1])
+        {
+            minY = dots[0][1];
+            maxY = dots[i][1];
+            break;
+        }
+    }
+    
+    answer = (maxX - minX) * (maxY - minY);
+    return answer;
+}
+*/

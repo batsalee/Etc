@@ -1,0 +1,54 @@
+#include <string>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+vector<string> solution(vector<string> quiz) {
+    vector<string> answer;
+    
+    string left="";
+    string right="";
+    string buffer="";
+    
+    int calc; // 계산 결과 담을 곳
+    int index;
+    
+    for(int i=0; i<quiz.size(); i++)
+    {        
+        calc = 0;
+        index = quiz[i].find("=");    
+        left = quiz[i].substr(0, index-1); // 좌항만 분리  
+        right = quiz[i].substr(index+2, quiz[i].length()-index-2); // 우항만 분리 
+    
+        // calc에 좌항의 결과 넣기
+        for(int j=left.length(); j>0; j--)
+        {            
+            if(left[j-1] == '+')  
+            {
+                calc += stoi(buffer);
+                buffer = "";
+            }
+            else if(left[j-1] == '-' && buffer[0] == ' ')  
+            {
+                calc -= stoi(buffer);    
+                buffer = "";
+            }
+            else
+            {
+                buffer = left[j-1] + buffer;
+                //cout << buffer << ' ' << calc << endl;               
+            }
+        }
+        calc += stoi(buffer); // 버퍼에 남은것 넣어주기
+        buffer = "";
+        
+       // cout << "left : " << left << " right : " << right << " calc : " << calc << endl;
+        
+        // 맞으면 answer.push_back("O");
+        if(calc == stoi(right)) answer.push_back("O");
+        // 틀리면 answer.push_back("X");
+        if(calc != stoi(right)) answer.push_back("X");
+    }
+    return answer;
+}

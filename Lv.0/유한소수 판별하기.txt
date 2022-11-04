@@ -1,0 +1,40 @@
+#include <string>
+#include <vector>
+#include <numeric>
+
+using namespace std;
+
+int solution(int a, int b) {
+    int answer = 1;
+        
+    // 먼저 기약분수로 만들기위해 최대공약수를 찾아서 분모 분자 나눠주기
+    int GCD = gcd(a, b);
+    b /= GCD; // 분자는 필요없으니 분모만 최대공약수로 나눠줌
+    
+    // b가 2와 5 이외의 소인수가 있으면 answer = 2, 2와 5만 있으면 answer = 1
+    int j;
+    for(int i=2; i<=b; i++)
+    {      
+        j=i;
+        while(j%2 == 0)
+        {
+            j /=2;
+        }
+        
+        while(j%5 == 0)
+        {
+            j /= 5;            
+        }
+        
+        if(j==1 || j==2 || j==5) 
+            continue;
+        
+        if(b % j == 0) 
+        {
+            answer = 2;
+            break;
+        }
+    }    
+       
+    return answer;
+}

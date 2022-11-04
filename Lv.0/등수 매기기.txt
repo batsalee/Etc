@@ -1,0 +1,29 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+vector<int> solution(vector<vector<int>> score) {
+    vector<int> answer;
+    vector<double> average; // 평균값을 담을 배열
+        
+    for(int i=0; i<score.size(); i++)
+    {    
+        average.push_back( (score[i][0] + score[i][1])/2.0 );
+    } // 평균 구해서 배열에 넣어주고
+    
+    // 1등부터 시작해서 본인보다 큰 점수가 있으면 등수 1씩 ++
+    int grade=1;
+    for(int j=0; j<average.size(); j++)
+    {
+        grade=1;
+        for(int i=0; i<average.size(); i++)
+        {
+            if(average[j] < average[i])
+                grade++;
+        }
+        answer.push_back(grade);
+    } 
+    
+    return answer;
+}

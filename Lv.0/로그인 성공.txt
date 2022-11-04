@@ -1,0 +1,28 @@
+#include <string>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+string solution(vector<string> id_pw, vector<vector<string>> db) {
+    string answer = "";
+    
+    // ip_pw[0] == id , ip_pw[1] == password
+    // 아이디가 없으면 "fail"
+    // 아이디는 있는데 비밀번호가 틀리면 "wrong pw"
+    // 아이디 비번 모두 일치하면 "login"
+       
+    for(int i=0; i<db.size(); i++)
+    {        
+        if(id_pw[0] == db[i][0]) // 맞는 아이디가 있으면 비번 검사하기
+        {
+            if(id_pw[1] == db[i][1]) answer = "login";              
+            else if(id_pw[1] != db[i][1]) answer = "wrong pw"; 
+            break; // 아이디 같은 데이터는 없으니 더 찾을필요 없이 break
+        }
+        else // 맞는 아이디가 계속 없으면 fail
+            answer = "fail";
+    }   
+    
+    return answer;
+}
