@@ -1,0 +1,68 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+vector<int> solution(vector<int> numlist, int n) {
+    vector<int> answer;
+    
+    // numlist의 값과 n의 값을 쭉 구함
+    
+    // 차이값의 절대값이 작은 곳의 인덱스부터 answer에 넣음
+    // 차이값의 절대값이 같은 것이 두개 있으면 큰 수 부터 넣어야 함
+    // 큰 수부터 정렬해놓고 시작하면 편할듯
+    // n이 5일때 numlist 6, 5, 4 이라면 -1 0 1이 되고 
+    // 가장 작은 수인 [1]의 값을 먼저 index에 넣고 
+    // 그다음 가장 작은수인 1과 -1 중 왼쪽걸 먼저 넣고 다음에 오른쪽걸 넣는다.
+    // 같으면 넘어가고 더 작은 수가 없을때 push해주면 될 듯
+    
+    // 내림차순으로 정렬
+    sort(numlist.begin(), numlist.end(), greater<>());
+    
+    vector<int> difference;
+    for(int s : numlist)
+    {
+        difference.push_back(abs(s-n));
+    }
+    
+   
+    for(int j=0; j<numlist.size(); j++)
+    {
+        int min = difference[0];  
+        int minIndex = 0;
+        for(int i=0; i<difference.size(); i++)
+        {
+            if(min > difference[i]) 
+            {
+                min = difference[i];       
+                minIndex = i;
+            }    
+        }
+        answer.push_back(numlist[minIndex]);
+        difference[minIndex] = 10000;
+        
+        /*        
+        // debug
+        cout << "결괏값 : " << numlist[minIndex] << "남은 배열 : ";
+        for(int k=0; k<difference.size(); k++)
+        {
+            cout << difference[k] << ' ';
+        }
+        cout << endl;
+        */
+    }
+    
+    // 6 5 4 3 2 1
+    // 2 1 0 1 2 3
+    // 2 1 1 2 3
+    // 2 1 2 3
+    // 2 2 3
+    // 2 3
+    // 3
+    // 0
+    
+    return answer;
+}
