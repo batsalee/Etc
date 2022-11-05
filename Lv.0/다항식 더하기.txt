@@ -1,0 +1,53 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <iostream>
+
+using namespace std;
+
+string solution(string polynomial) {
+    string answer = "";
+    
+    int sumX = 0;
+    int sumN = 0;
+    int countPlus = count(polynomial.begin(), polynomial.end(), '+');
+    
+    int index = 0;
+    string buffer = "";
+    for(int i=0; i<countPlus+1; i++)
+    {
+        index = polynomial.find(" + ");
+        if(index != string::npos)
+        {
+            buffer = polynomial.substr(0, index);
+            polynomial = polynomial.substr(index+3, polynomial.length()-1);
+        }
+        else if(index == string::npos)
+        {
+            buffer = polynomial;
+        }
+        
+        
+        if(buffer.find('x') == string::npos)  // 숫자면
+        {
+            sumN += stoi(buffer);
+            buffer = "";
+        }
+        else if(buffer.find("x") != string::npos)
+        {
+            if(buffer=="x") sumX += 1;
+            else sumX += stoi(buffer.substr(0, buffer.length()-1));   
+            buffer = "";
+        }
+    }
+    
+    // 출력파트
+    if(sumX == 0 && sumN == 0) answer = "0";
+    else if(sumX == 0 && sumN > 0) answer = to_string(sumN);
+    else if(sumX == 1 && sumN == 0) answer = "x";
+    else if(sumX == 1 && sumN > 0) answer = "x + " + to_string(sumN);
+    else if(sumX > 1 && sumN == 0) answer = to_string(sumX) + "x";
+    else if(sumX > 1 && sumN > 0) answer = to_string(sumX) + "x + " + to_string(sumN);
+    
+    return answer;
+}

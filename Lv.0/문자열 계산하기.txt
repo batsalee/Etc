@@ -1,0 +1,29 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(string my_string) {
+    int answer = 0;
+    
+    string buffer = "";
+    
+    for(int i = my_string.length()-1; i>=0; i--)
+    {
+        if(my_string[i] == '+')
+        {
+            answer += stoi(buffer);
+        }
+        else if(my_string[i] == '-')
+        {
+            answer -= stoi(buffer);
+        }
+        else // 숫자나 공백이라면
+        {
+            buffer = my_string[i] + buffer;
+        }
+    }
+    if(buffer != "") answer += stoi(buffer);
+    
+    return answer;
+}
