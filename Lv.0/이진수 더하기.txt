@@ -1,7 +1,6 @@
 /*
 1의 자리부터 한자리씩 가져와서 더하면서 올려주는 방식
 */
-/*
 #include <string>
 #include <vector>
 #include <cmath>
@@ -54,7 +53,6 @@ string solution(string bin1, string bin2) {
     
     return answer;
 }
-*/
 
 /*
 2진수를 10진수로 변환 후 더하고 다시 2진수로 바꾸는 방식
@@ -109,6 +107,47 @@ string solution(string bin1, string bin2) {
     else if(sum == 0)
         answer = "0";
     
+    return answer;
+}
+*/
+
+
+/*
+bitset 객체는 .to_ulong()으로 10진수로 그냥 바꿀 수 있다.
+그러니 굳이 힘들게 포문 돌릴 필요가 없었던 것...
+10진수로 바꿔서 더하고 다시 2진수로 바꾸는것은 마찬가지지만
+*/
+/*
+#include <string>
+#include <vector>
+#include <iostream>
+#include <bitset>
+
+using namespace std;
+
+string solution(string bin1, string bin2) {
+    string answer = "";
+    
+    bitset<32> b1(bin1);
+    bitset<32> b2(bin2);
+    
+    bitset<32> result( b1.to_ulong() + b2.to_ulong() );
+     
+    answer = result.to_string();
+    
+    if(answer.find('1') != string::npos)
+    {
+        int init = 0;
+        while( !stoi(answer.substr(init,1)) )
+        {
+            init++;
+        }
+    
+        answer = answer.substr(init);
+    }
+    else
+        answer = "0";
+        
     return answer;
 }
 */
