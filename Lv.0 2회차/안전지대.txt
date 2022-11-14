@@ -1,0 +1,47 @@
+#include <vector>
+
+using namespace std;
+
+int solution(vector<vector<int>> board) {
+    int answer = 0;
+    
+    int lastIndex = board.size() - 1;
+    for(int x=0; x<board.size(); x++)
+    {
+        for(int y=0; y<board.size(); y++)
+        {
+            if(board[x][y] == 1)
+            {
+                if(x > 0 && y > 0 && board[x-1][y-1] != 1)
+                    board[x-1][y-1] = -1; // 왼위
+                if(y > 0 && board[x][y-1] != 1)
+                    board[x][y-1] = -1; // 위
+                if(x < lastIndex && y > 0 && board[x+1][y-1] != 1)
+                    board[x+1][y-1] = -1; // 오위
+                if(x > 0 && board[x-1][y] != 1)
+                    board[x-1][y] = -1; // 왼
+                if(x < lastIndex && board[x+1][y] != 1)
+                    board[x+1][y] = -1; // 오
+                if(x > 0 && y < lastIndex && board[x-1][y+1] != 1)
+                    board[x-1][y+1] = -1; // 왼아래
+                if(y < lastIndex && board[x][y+1] != 1)
+                    board[x][y+1] = -1; // 아래
+                if(x < lastIndex && y < lastIndex && board[x+1][y+1] != 1)
+                    board[x+1][y+1] = -1; // 오아래
+            }
+        }
+    }
+    
+    for(int x=0; x<board.size(); x++)
+    {
+        for(int y=0; y<board.size(); y++)
+        {
+            if(board[x][y] == 0)
+            {
+                answer++;
+            }
+        }
+    }
+    
+    return answer;
+}

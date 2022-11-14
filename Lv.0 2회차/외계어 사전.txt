@@ -1,0 +1,24 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int solution(vector<string> spell, vector<string> dic) {
+    int answer = 2;
+    
+    string forSpell = "";    
+    for(const auto& c : spell)
+    {
+        forSpell += c;
+    }
+    sort(forSpell.begin(), forSpell.end());
+    
+    for(string s : dic)
+    {
+        sort(s.begin(), s.end());
+        if(forSpell == s) answer = 1;
+    }
+        
+    return answer;
+}
