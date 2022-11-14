@@ -1,0 +1,18 @@
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+string solution(string s) {
+    string answer = "";
+    
+    sort(s.begin(), s.end());
+    
+    for(const char& c : s)
+    {
+        if(count(s.begin(), s.end(), c) == 1)
+            answer += c;
+    }
+    
+    return answer;
+}
