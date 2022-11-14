@@ -1,0 +1,32 @@
+#include <string>
+#include <vector>
+#include <sstream>
+
+using namespace std;
+
+string solution(string letter) {
+    vector<string> morse = {".-","-...","-.-.","-..",".","..-.","--.","....","..",
+                            ".---","-.-",".-..","--","-.","---",".--.","--.-",
+                            ".-.","...","-","..-","...-",".--","-..-","-.--","--.."
+                            };
+    
+    string answer = "";
+    string alpha = "";
+    
+    stringstream stream;    
+    stream.str(letter);
+        
+    while(stream >> alpha)
+    {
+        for(int i=0; i<morse.size(); i++)
+        {
+            if(alpha == morse[i]) 
+            {
+                answer += 'a'+i;
+                break;
+            }
+        }
+    }
+    
+    return answer;
+}

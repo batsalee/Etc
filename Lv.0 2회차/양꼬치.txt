@@ -1,0 +1,6 @@
+int solution(int n, int k) {
+    const unsigned int price_yang = 12000;
+    const unsigned int price_drink = 2000;
+    
+    return (price_yang*n) + (price_drink*k) - (price_drink*(n/10));
+}

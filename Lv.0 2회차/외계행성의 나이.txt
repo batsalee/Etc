@@ -1,0 +1,15 @@
+#include <string>
+
+using namespace std;
+
+string solution(int age) {
+    string answer = "";
+    string temp = to_string(age);
+    
+    for(const auto c : temp)
+    {
+        answer += c + ('a'-'0');
+    }
+    
+    return answer;
+}

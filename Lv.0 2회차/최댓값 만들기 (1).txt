@@ -1,0 +1,19 @@
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+int solution(vector<int> numbers) {
+    int answer = 1;
+    
+    // 가장 큰 숫자 뽑아서 answer에 넣고
+    auto max = max_element(numbers.begin(), numbers.end());
+    answer *= (*max);
+   
+    // 가장 큰 숫자 지우고 그 다음 큰 숫자 뽑아서 곱하기
+    numbers.erase(max);
+    max = max_element(numbers.begin(), numbers.end());
+    answer *= (*max);
+    
+    return answer;
+}
