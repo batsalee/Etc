@@ -1,0 +1,28 @@
+#include <string>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+vector<int> solution(vector<vector<int>> score) {
+    vector<int> answer;
+    vector<double> average;
+    
+    for(const vector<int>& s : score)
+    {
+        average.push_back( (s[0]+s[1]) / 2.0 );
+    }
+    
+    int grade;
+    for(double a : average)
+    {
+        grade = 1;
+        for(auto itr=average.begin(); itr!=average.end(); itr++)
+        {
+            if(a<(*itr)) grade++;
+        }
+        answer.push_back(grade);
+    }
+    
+    return answer;
+}
