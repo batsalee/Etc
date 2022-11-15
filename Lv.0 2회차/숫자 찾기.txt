@@ -1,0 +1,11 @@
+#include <string>
+
+using namespace std;
+
+int solution(int num, int k) {  
+    string n = to_string(num);   
+    int index = n.find(to_string(k));
+   
+    if(index == string::npos) return -1;
+    else return index+1;
+}

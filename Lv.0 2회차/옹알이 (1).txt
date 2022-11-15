@@ -1,0 +1,25 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int solution(vector<string> babbling) {
+    int answer = 0;
+    
+    vector<string> can_say = {"aya", "ye", "woo", "ma"};
+    
+    for(string b : babbling)
+    {
+        for(string cs : can_say)
+        {
+            int index = b.find(cs);
+            if(index!=string::npos)
+                b.replace(index, cs.length(), " ");
+        }        
+       if( all_of(b.begin(), b.end(),
+                     [](char& c){ return c==' '; }) ) answer++;
+    }
+    
+    return answer;
+}
