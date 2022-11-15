@@ -1,0 +1,16 @@
+#include <string>
+
+using namespace std;
+
+string solution(string s) {
+    int toggle=0;
+    
+    for(int i=0; i<s.length(); i++)
+    {
+        s[i] = toggle ? tolower(s[i]) : toupper(s[i]);
+        toggle ^= 1;
+        if(s[i]==' ') toggle = 0;
+    }
+    
+    return s;
+}

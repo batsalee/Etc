@@ -1,0 +1,11 @@
+bool solution(int x) {
+    int sum = 0, _x = x;
+    
+    while(_x)
+    {
+        sum += _x%10;
+        _x /= 10;
+    }
+    
+    return (x%sum == 0) ? true : false;
+}

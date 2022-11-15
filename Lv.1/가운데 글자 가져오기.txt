@@ -1,0 +1,12 @@
+#include <string>
+
+using namespace std;
+
+string solution(string s) {
+    int s_length = s.length();
+    
+    if(s_length % 2 == 0) // 짝수
+        return s.substr(s_length/2-1, 2);
+    else if(s_length % 2 == 1) // 홀수
+        return s.substr(s_length/2, 1);
+}

@@ -1,0 +1,8 @@
+#include <cmath>
+
+long long solution(long long n) {
+    if( (long long)pow((long long)sqrt(n), 2) == n) 
+        return (long long)pow((long long)sqrt(n)+1, 2);
+    else 
+        return -1;
+}

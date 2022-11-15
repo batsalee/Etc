@@ -1,0 +1,41 @@
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+vector<int> solution(vector<int> lottos, vector<int> win_nums) {
+    vector<int> answer;
+    
+    
+    int count_same = 0, count_zero = 0;
+    for(int l : lottos)
+    {
+        // 0 갯수 확인
+        if(l==0) 
+        {
+            count_zero++;
+            continue;
+        }
+        
+        // 맞은 번호 갯수 체크
+        auto itr = find(win_nums.begin(), win_nums.end(), l);
+        if(itr != win_nums.end())
+        {
+            count_same++;
+        }
+    }
+  
+    // 맞은번호갯수 + 0갯수 = 최대 맞힐 수 있는 갯수
+    if(count_same+count_zero>=1)
+        answer.push_back(7-(count_same+count_zero));
+    else
+        answer.push_back(6);    
+    
+    // 맞은번호갯수 = 최소 맞힐 수 있는 갯수
+    if(count_same>=1)
+        answer.push_back(7-count_same);
+    else
+        answer.push_back(6);
+    
+    return answer;
+}

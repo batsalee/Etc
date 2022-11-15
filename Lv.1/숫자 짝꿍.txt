@@ -1,0 +1,22 @@
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+string solution(string X, string Y) {
+    string answer = "";
+    
+    int count_num = 0;
+    for(char c='9'; c>='0'; c--)
+    {   
+        count_num = min( count(X.begin(), X.end(), c), count(Y.begin(), Y.end(), c) );
+        answer += string(count_num, c);
+    }
+    
+    if(answer.empty()) answer = "-1";
+    
+    // 0000....인 경우 처리해주기 
+    if(answer[0]=='0') answer = "0";
+    
+    return answer;
+}

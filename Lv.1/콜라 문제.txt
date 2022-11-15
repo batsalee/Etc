@@ -1,0 +1,13 @@
+int solution(int a, int b, int n) {
+    int answer = 0;
+    int service = 0;
+
+    while(n>=a)
+    {
+        service = b*(n/a);
+        n = (n%a) + service;        
+        answer += service;
+    }
+      
+    return answer;
+}

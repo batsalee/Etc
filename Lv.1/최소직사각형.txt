@@ -1,0 +1,17 @@
+#include <vector>
+
+using namespace std;
+
+int solution(vector<vector<int>> sizes) {
+    int biggestW = 0, biggestH = 0;
+    
+    for(vector<int> s : sizes)
+    {
+        if(s[0]<s[1]) swap(s[0], s[1]);
+        
+        if(s[0]>biggestW) biggestW = s[0];
+        if(s[1]>biggestH) biggestH = s[1];
+    }
+    
+    return biggestW * biggestH;
+}
