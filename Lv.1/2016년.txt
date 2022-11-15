@@ -1,0 +1,18 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+string solution(int a, int b) {
+    vector<int> day_limit = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    
+    int today_value = 0;
+    for(int i=1; i<a; i++) 
+    {
+        today_value += day_limit[i];
+    }
+    today_value += b-1;
+    
+    vector<string> answer = {"FRI", "SAT", "SUN", "MON", "TUE", "WED", "THU"};
+    return answer[(today_value%7)];
+}
