@@ -1,0 +1,30 @@
+#include <stack>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int solution(vector<int> ingredient) {
+    int answer = 0;
+    
+    stack<int> material;  
+    string check = "";
+    
+    for(const int i : ingredient)
+    {
+        material.push(i);
+        check += to_string(i);
+        
+        if(check.length()>=4 && check.substr(check.length()-4,4) == "1231")
+        {
+            answer++;
+            material.pop();
+            material.pop();
+            material.pop();
+            material.pop();
+            check = check.substr(0, check.length()-4);
+        }
+    }
+  
+    return answer;
+}

@@ -1,0 +1,21 @@
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int solution(int k, int m, vector<int> score) {
+    int answer = 0;
+    
+    // 최고점수인 k보다 높은 score는 k로 맞추기
+    transform(score.begin(), score.end(), score.begin(), 
+              [k](int i){return (i>k) ? i=k : i;} );
+    
+    sort(score.begin(), score.end(), greater<>());    
+    
+    for(int i=1; i<=score.size()/m; i++)
+    {
+        answer += m*score[m*i-1];
+    }
+    
+    return answer;
+}
