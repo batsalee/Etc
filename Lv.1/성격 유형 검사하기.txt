@@ -1,0 +1,43 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+string solution(vector<string> survey, vector<int> choices) {
+    
+    // 1 : 왼쪽3점, 2 : 왼쪽 2점, 3 : 왼쪽 1점
+    // 4 : 둘다 0점
+    // 5 : 오른쪽 1점, 6 : 오른쪽 2점, 7 : 오른쪽 3점
+        
+    string type = "RTCFJMAN";
+    vector<int> score(8, 0);    
+    
+    // 점수 주기
+    for(int i=0; i<choices.size(); i++)
+    {        
+        if(choices[i] < 4) // 1, 2, 3인 경우
+        {
+            int index = type.find(survey[i][0]);
+            score[index] += (4-choices[i]);
+        }
+        else if(choices[i] == 4) // 4인 경우
+        {
+            continue;
+        }
+        else if(choices[i] > 4) // 5, 6, 7인 경우
+        {
+            int index = type.find(survey[i][1]);
+            score[index] += (choices[i]-4);
+        }
+    }
+
+    // 결론 내기
+    string answer = "";
+    answer += (score[1]>score[0]) ? "T" : "R";
+    answer += (score[3]>score[2]) ? "F" : "C";
+    answer += (score[5]>score[4]) ? "M" : "J";
+    answer += (score[7]>score[6]) ? "N" : "A";
+   
+    return answer;
+}
