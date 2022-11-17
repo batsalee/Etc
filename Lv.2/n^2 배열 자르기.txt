@@ -1,0 +1,37 @@
+#include <vector>
+
+using namespace std;
+
+vector<int> solution(int n, long long left, long long right) {
+    vector<int> answer;
+
+    // 행과 열 중 더 큰 숫자 따라간다
+    for(long long i = left; i<=right; i++)
+    {
+        answer.push_back( (i/n > i%n) ? (i/n)+1 : (i%n)+1 );
+    }
+    
+    return answer;
+}
+
+/*
+1
+1
+
+2
+1 2
+2 2
+
+3
+1 2 3          00 01 02
+2 2 3          10 11 12     array[i/n][i%n];
+3 3 3          20 21 22     02 10 11 12 
+
+4
+1 2 3 4
+2 2 3 4
+3 3 3 4
+4 4 4 4
+
+*/
+    
